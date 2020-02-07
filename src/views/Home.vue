@@ -86,14 +86,15 @@ export default {
     },
     showModal (task) {
       this.$modal.show('dialog', {
-        title: '削除確認',
-        text: '',
+        title: '削除してもよろしいですか？',
+        text: 'タスク名：' + task.title,
         buttons: [
-          { title: 'deal with it', handler: () => {
-            this.deleteTask(task)
-            this.$modal.hide('dialog')
+          { title: 'OK',
+            handler: () => {
+              this.deleteTask(task)
+              this.$modal.hide('dialog')
           } },
-          { title: 'close'}
+          { title: 'やめる'}
         ]
       });
     }
