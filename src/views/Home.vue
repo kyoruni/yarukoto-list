@@ -50,6 +50,11 @@
         </b-list-group>
       </b-col>
       <!-- 右側ここまで -->
+      <button v-on:click="show" class="button">show!</button>
+      <modal name="hello-world">
+        hello, world!
+        <button @click="hide">閉じる</button>
+      </modal>
     </b-row>
   </div>
 </template>
@@ -75,7 +80,13 @@ export default {
     deleteButton (task) {
       let targetTaskIndex = this.tasks.indexOf(task)
       this.tasks.splice(targetTaskIndex, 1)
-    }
+    },
+    show () {
+      this.$modal.show('hello-world');
+    },
+    hide () {
+      this.$modal.hide('hello-world');
+    },
   },
   computed: {
     maxId () {
