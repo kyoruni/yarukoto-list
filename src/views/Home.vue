@@ -3,7 +3,6 @@
     <b-row>
       <!-- 左側ここから -->
       <b-col sm="4" xs="12">
-        left
         <!-- フォームここから -->
         <b-form class="mt-3 ml-2 mr-2">
           <b-form-group label="やること" label-for="task">
@@ -21,8 +20,7 @@
       </b-col>
       <!-- 左側ここまで -->
       <!-- 右側ここから -->
-      <b-col sm="8" xs="12" class="bg-warning">
-        right
+      <b-col sm="8" xs="12">
         <b-list-group flush>
           <b-list-group-item v-for="task in tasks" :key="task.id">
             <div class="d-flex justify-content-between">
