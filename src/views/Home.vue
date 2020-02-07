@@ -65,9 +65,10 @@ export default {
   },
   methods: {
     addButton () {
-      localStorage.uid = localStorage.length
+      localStorage.uid = this.maxId
+      localStorage.uid++
       let newTask = {
-        id: localStorage.uid++,
+        id: Number(localStorage.uid),
         title: this.textInput,
         check: false
       }
@@ -109,7 +110,7 @@ export default {
   },
   watch: {
     tasks: {
-      handler: function(tasks) {
+      handler (tasks) {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks))
       },
       deep: true
