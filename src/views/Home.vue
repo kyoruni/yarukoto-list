@@ -32,7 +32,7 @@
                   v-model="task.check"
                   name="checkbox"
                   class="position-static">
-                  {{ task.id }}：{{ task.title }}
+                  {{ task.title }}
                 </b-form-checkbox>
                 <!-- チェックボックスここまで -->
               </div>
@@ -44,14 +44,7 @@
                   完了
                 </b-badge>
                 <font-awesome-icon icon="minus-circle" @click="showModal(task)" class="text-danger delete-button" />
-                <!-- モーダルここから -->
                 <v-dialog />
-                <!-- <modal name="confirm"> -->
-                  <!-- {{ task }} -->
-                  <!-- <button @click="deleteButton(task)">OK</button>
-                  <button @click="closeModal">閉じる</button> -->
-                <!-- </modal> -->
-                <!-- モーダルここまで -->
               </div>
             </div>
           </b-list-group-item>
