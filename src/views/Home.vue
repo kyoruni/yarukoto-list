@@ -70,6 +70,7 @@ export default {
     addButton () {
       let newTask = { id: this.maxId + 1, title: this.textInput, check: false }
       this.tasks.push(newTask)
+      this.textInput = ''
     },
     deleteButton (task) {
       let targetTaskIndex = this.tasks.indexOf(task)
