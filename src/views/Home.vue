@@ -5,7 +5,7 @@
       <b-col sm="4" xs="12">
         <!-- フォームここから -->
         <b-form class="mt-3 ml-2 mr-2">
-          <b-form-group label="やること" label-for="task">
+          <b-form-group>
             <b-form-input v-model="textInput" id="task" type="text" placeholder="やることを入力">
             </b-form-input>
           </b-form-group>
@@ -25,7 +25,7 @@
           <b-list-group-item v-for="task in tasks" :key="task.id">
             <div class="d-flex justify-content-between">
               <div class="text-left">
-<!-- start -->
+                <!-- チェックボックスここから -->
                 <b-form-checkbox
                   :id="'checkbox'+ task.id"
                   :class="{ done: task.check }"
@@ -34,7 +34,7 @@
                   class="position-static">
                   {{ task.id }}：{{ task.title }}
                 </b-form-checkbox>
-<!-- end -->
+                <!-- チェックボックスここまで -->
               </div>
               <div class="text-right">
                 <b-badge pill v-if="task.check === false" class="task-label mr-2">
