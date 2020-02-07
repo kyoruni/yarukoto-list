@@ -60,16 +60,17 @@ export default {
   data () {
     return {
       textInput: '',
-      tasks: [
-        { id: 1, title: '買い物', check: false },
-        { id: 2, title: 'ゴミ捨て', check: false },
-        { id: 3, title: '掃除機', check: false }
-      ]
+      tasks: []
     }
   },
   methods: {
     addButton () {
-      let newTask = { id: this.maxId + 1, title: this.textInput, check: false }
+      localStorage.uid = localStorage.length
+      let newTask = {
+        id: localStorage.uid++,
+        title: this.textInput,
+        check: false
+      }
       this.tasks.push(newTask)
       this.textInput = ''
     },
@@ -101,7 +102,21 @@ export default {
         return task.id
       })
       return Math.max.apply(null, allTasksId)
+    },
+    STORAGE_KEY () {
+      return 'yarukoto-list'
     }
+  },
+  watch: {
+    tasks: {
+      handler: function(tasks) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks))
+      },
+      deep: true
+    }
+  },
+  mounted () {
+    this.tasks = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]')
   }
 }
 </script>
