@@ -43,18 +43,21 @@
                 <b-badge pill v-if="task.check=== true" variant="success" class="task-label mr-2">
                   完了
                 </b-badge>
-                <font-awesome-icon icon="minus-circle" @click="deleteButton(task)" class="text-danger delete-button" />
+                <font-awesome-icon icon="minus-circle" @click="showModal(task)" class="text-danger delete-button" />
+                <!-- モーダルここから -->
+                <v-dialog />
+                <!-- <modal name="confirm"> -->
+                  <!-- {{ task }} -->
+                  <!-- <button @click="deleteButton(task)">OK</button>
+                  <button @click="closeModal">閉じる</button> -->
+                <!-- </modal> -->
+                <!-- モーダルここまで -->
               </div>
             </div>
           </b-list-group-item>
         </b-list-group>
       </b-col>
       <!-- 右側ここまで -->
-      <button v-on:click="show" class="button">show!</button>
-      <modal name="hello-world">
-        hello, world!
-        <button @click="hide">閉じる</button>
-      </modal>
     </b-row>
   </div>
 </template>
@@ -77,16 +80,23 @@ export default {
       this.tasks.push(newTask)
       this.textInput = ''
     },
-    deleteButton (task) {
+    deleteTask (task) {
       let targetTaskIndex = this.tasks.indexOf(task)
       this.tasks.splice(targetTaskIndex, 1)
     },
-    show () {
-      this.$modal.show('hello-world');
-    },
-    hide () {
-      this.$modal.hide('hello-world');
-    },
+    showModal (task) {
+      this.$modal.show('dialog', {
+        title: '削除確認',
+        text: '',
+        buttons: [
+          { title: 'deal with it', handler: () => {
+            this.deleteTask(task)
+            this.$modal.hide('dialog')
+          } },
+          { title: 'close'}
+        ]
+      });
+    }
   },
   computed: {
     maxId () {

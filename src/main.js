@@ -15,7 +15,7 @@ import VModal from 'vue-js-modal'
 
 library.add(fas, far, fab)
 Vue.use(BootstrapVue)
-Vue.use(VModal)
+Vue.use(VModal, { dialog: true })
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
