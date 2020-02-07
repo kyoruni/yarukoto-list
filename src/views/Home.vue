@@ -31,7 +31,7 @@
                 <b-form-checkbox
                   :id="'checkbox'+ task.id"
                   :class="{ done: task.check }"
-                  v-model="task.done"
+                  v-model="task.check"
                   name="checkbox"
                   class="position-static">
                   {{ task.id }}：{{ task.title }}
