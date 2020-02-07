@@ -64,6 +64,7 @@ export default {
     }
   },
   methods: {
+    // 登録処理
     addButton () {
       localStorage.uid = this.maxId
       localStorage.uid++
@@ -75,10 +76,7 @@ export default {
       this.tasks.push(newTask)
       this.textInput = ''
     },
-    deleteTask (task) {
-      let targetTaskIndex = this.tasks.indexOf(task)
-      this.tasks.splice(targetTaskIndex, 1)
-    },
+    // 削除確認モーダルを表示して、OKだったら削除処理を行う
     showModal (task) {
       this.$modal.show('dialog', {
         title: '削除してもよろしいですか？',
@@ -89,9 +87,14 @@ export default {
               this.deleteTask(task)
               this.$modal.hide('dialog')
           } },
-          { title: 'やめる'}
+          { title: 'やめる' }
         ]
       });
+    },
+    // 削除処理
+    deleteTask (task) {
+      let targetTaskIndex = this.tasks.indexOf(task)
+      this.tasks.splice(targetTaskIndex, 1)
     }
   },
   computed: {
@@ -111,7 +114,8 @@ export default {
   watch: {
     tasks: {
       handler (tasks) {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks))
+        const jsonTasks = JSON.stringify(tasks)
+        localStorage.setItem(this.STORAGE_KEY, jsonTasks)
       },
       deep: true
     }
